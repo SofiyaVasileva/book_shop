@@ -1,17 +1,6 @@
-# vasilueva_bookshop
+# Книжный Магазин
 
-A new Flutter project.
+Васильева Софья Андреевна
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# book_shop
+<img width="758" alt="Снимок экрана 2024-05-15 в 14 57 35" src="https://github.com/SofiyaVasileva/book_shop/assets/91559612/ae2be3cc-5eaf-4a87-9c6f-67a324aff840">
+<img width="760" alt="Снимок экрана 2024-05-15 в 14 58 24" src="https://github.com/SofiyaVasileva/book_shop/assets/91559612/4c83cfe8-09af-4453-a596-d15adfeadd56">
