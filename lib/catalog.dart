@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vasilueva_bookshop/data.dart';
 
+
+const List<String> users = <String>["Фактор дисбаланса", "Демон из Пустоши. Колдун Российской империи", "Жизнь за жизнь", "Граф Аверин. Колдун Российской империи", "Политические режимы и трансформации: Россия в сравнительной перспективе"];
+const List<String> companies = <String>["Макс Глебов", "Виктор Дашкевич", "Елена Паленова", "Виктор Дашкевич", "Григорий Голосов"];
+
+
 class MainPage extends StatefulWidget{
   const MainPage({ super.key});
   @override
@@ -41,12 +46,23 @@ static final List<Widget> _pages = <Widget>[
     return ConstrCatalog(nameBook: bookList[index].name, bookCover: bookList[index].cover, bookAuthor: bookList[index].author, shortDesc: bookList[index].desc,);
   }
   ),
-
-  const Icon(
-    //Листвью, товары, +-, подстчет общей суммы стоимости
-    Icons.shopping_cart,
-    size: 150,
-  ),
+//Листвью, товары, +-, подстчет общей суммы стоимости
+  ListView.builder(
+   padding: const EdgeInsets.all(8),
+   itemCount: users.length,
+  itemBuilder: (BuildContext context, int index) {
+      return Container(
+       padding: EdgeInsets.symmetric(vertical: 10),
+       child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+              Text(users[index], style: TextStyle(fontSize: 22)),
+              Text("Автор: ${companies[index]}", style: TextStyle(fontSize: 18))
+            ],
+          ),
+         );
+       }
+    ),
   
   const Icon(
     //Как товары, но все с активными сердцами
