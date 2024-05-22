@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:vasilueva_bookshop/main.dart';
-
-class SecondRoute extends StatelessWidget {
+bool? check1 = false;
+class SecondRoute extends StatefulWidget {
   const SecondRoute({super.key});
 
+  @override
+  State<SecondRoute> createState() => _SecondRouteState();
+}
+
+class _SecondRouteState extends State<SecondRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +53,30 @@ class SecondRoute extends StatelessWidget {
                           filled: true
                       )
                       ),
+                       Row(
+                          children: [
+                            Checkbox(
+                              value: check1,
+                              onChanged: (value) {
+                                setState(() {
+                                check1 = value;
+                                 });
+                                 },
+                              tristate: false,
+                            ),
+                            Container(
+                              constraints: const BoxConstraints (maxWidth: 200),
+                              child: const Text(
+                                'Я ознакомлен(а) с Политикой конфиденциальности и согласен(а) на обработку персональных данных',
+                                softWrap: true,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color.fromARGB(255, 61, 61, 61)
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ElevatedButton(
                           child: const Text('Зарегестрироваться'),
                           onPressed:(){

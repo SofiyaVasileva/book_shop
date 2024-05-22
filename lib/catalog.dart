@@ -19,6 +19,13 @@ class _MainPagerState extends State<MainPage>{
 static final List<Widget> _pages = <Widget>[
   Column(children: [
   Container(
+    child: const Column(children: [
+      Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147133.png')
+      ),
+      Text('Фамилиевич Имян Отчествович'),
+      Text('pochta@gmail.com'),
+    ]
+    ),
       //ФИО, почта
   ),
   Container(
@@ -48,6 +55,7 @@ static final List<Widget> _pages = <Widget>[
   
   const Icon(
     //Как товары, но все с активными сердцами
+    
     Icons.favorite_border_outlined,
     size: 150,
   ),
