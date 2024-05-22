@@ -4,6 +4,7 @@ import 'package:vasilueva_bookshop/data.dart';
 class MainPage extends StatefulWidget{
   const MainPage({ super.key});
   @override
+  // ignore: library_private_types_in_public_api
   _MainPagerState createState() => _MainPagerState();
 }
 class _MainPagerState extends State<MainPage>{
@@ -17,19 +18,16 @@ class _MainPagerState extends State<MainPage>{
   int _selectedIndex = 0;
  
 static final List<Widget> _pages = <Widget>[
-  Column(children: [
-  const Column(children: [
+    const Column(children: [
     Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147133.png')
     ),
-    Text('Фамилиевич Имян Отчествович',),
-    Text('pochta@gmail.com'),
-  ]
-  ),
-  Container(
-    //Старые покупки
-  )
-  ]
-  ),
+    Text('Фамильцев Имян Отчествович', style: TextStyle(fontSize: 30),
+    ),
+    Text('pochta@gmail.com', style: TextStyle(fontSize: 20)
+    ),
+    Text('История покупок'
+    )   
+    ]),
 
   GridView.builder(
   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -62,7 +60,7 @@ static final List<Widget> _pages = <Widget>[
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Каталог'),
+        title: const Text('РитЛес'),
       ),
       body: Center(
       child: _pages.elementAt(_selectedIndex),
