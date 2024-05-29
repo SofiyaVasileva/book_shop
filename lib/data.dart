@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ConstrCatalog extends StatelessWidget {
+class ConstrCatalog extends StatefulWidget {
   const ConstrCatalog({super.key, required this.nameBook, required this.bookCover, required this.bookAuthor, required this.shortDesc});
   final String nameBook;
   final String bookCover;
@@ -8,32 +8,79 @@ class ConstrCatalog extends StatelessWidget {
   final String shortDesc;
 
   @override
+  State<ConstrCatalog> createState() => _ConstrCatalogState();
+}
+
+class _ConstrCatalogState extends State<ConstrCatalog> {
+  late Color _buttonColor;
+  @override
+  void initState() {
+    //Начальное значение цвета кнопки
+    _buttonColor =  Colors.grey;
+    super.initState();
+  }
+
+ int value = 0;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Center(
-            child: Text(nameBook,
+            child: Text(widget.nameBook,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold ),),
             ),
           Center(
-            child: Image.network(bookCover),
+            child: Image.network(widget.bookCover),
           ),
           Center(
-            child: Text('Автор: $bookAuthor',
+            child: Text('Автор: ${widget.bookAuthor}',
             softWrap: true,
             maxLines: 5,
             style: const TextStyle(fontSize: 15),
             ),
           ),
           Center(
-            child: Text('Краткое описание: $shortDesc',
+            child: Text('Краткое описание: ${widget.shortDesc}',
             softWrap: true,
+            overflow: TextOverflow.fade,
             maxLines: 5,
             style: const TextStyle(fontSize: 12),
             ),
-          )
+          ),
+          Row(children: [
+            const SizedBox(
+                width: 20,
+              ),
+              Badge(
+                  label: Text('$value'),
+                  child: IconButton(
+                      onPressed: () {setState(() {
+                    value++;
+                  });}, 
+                  icon: const Icon(Icons.shopping_cart))),
+                  const SizedBox(
+                    width: 20,
+                  ),
+            IconButton(
+                  icon: const Icon(Icons.favorite),
+                  color:  _buttonColor,
+                  onPressed: () {
+                      setState(() {
+                      if (_buttonColor == Colors.grey) {
+                        _buttonColor = Colors.red;
+                      } else {
+                        _buttonColor = Colors.grey;
+                      }
+                    },
+                  );
+                }
+             )
+          ],
+         )
         ]
         ),
     );

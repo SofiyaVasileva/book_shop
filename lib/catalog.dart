@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vasilueva_bookshop/data.dart';
+import 'package:vasilueva_bookshop/favorite.dart';
 
 
 const List<String> users = <String>["Фактор дисбаланса", "Демон из Пустоши. Колдун Российской империи", "Жизнь за жизнь", "Граф Аверин. Колдун Российской империи", "Политические режимы и трансформации: Россия в сравнительной перспективе"];
@@ -23,22 +24,29 @@ class _MainPagerState extends State<MainPage>{
   int _selectedIndex = 0;
  
 static final List<Widget> _pages = <Widget>[
-    const Column(children: [
-    Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147133.png')
+    const Column( crossAxisAlignment: CrossAxisAlignment.center, children: [
+    SizedBox(width: 650,
+      height: 650,
+      child: Column(
+      children: [
+        Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147133.png')
+        ),
+        Text('Фамильцев Имян Отчествович', style: TextStyle(fontSize: 30),
+        ),
+        Text('pochta@gmail.com', style: TextStyle(fontSize: 20)
+        ),
+        Text('История покупок'
+        ),
+      ],
     ),
-    Text('Фамильцев Имян Отчествович', style: TextStyle(fontSize: 30),
     ),
-    Text('pochta@gmail.com', style: TextStyle(fontSize: 20)
-    ),
-    Text('История покупок'
-    )   
     ]),
 
   GridView.builder(
   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
-    childAspectRatio: 0.49,
-    crossAxisSpacing: 20,
+    childAspectRatio: 0.55,
+    crossAxisSpacing: 10,
     mainAxisSpacing: 5
     ),
   itemCount: bookList.length,
@@ -50,25 +58,31 @@ static final List<Widget> _pages = <Widget>[
   ListView.builder(
    padding: const EdgeInsets.all(8),
    itemCount: users.length,
-  itemBuilder: (BuildContext context, int index) {
+   itemBuilder: (BuildContext context, int index) {
       return Container(
-       padding: EdgeInsets.symmetric(vertical: 10),
+       padding: const EdgeInsets.symmetric(vertical: 10),
        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-              Text(users[index], style: TextStyle(fontSize: 22)),
-              Text("Автор: ${companies[index]}", style: TextStyle(fontSize: 18))
+              Text(users[index], style: const TextStyle(fontSize: 22)),
+              Text("Автор: ${companies[index]}", style: const TextStyle(fontSize: 18))
             ],
           ),
          );
        }
     ),
   
-  const Icon(
-    //Как товары, но все с активными сердцами
-    
-    Icons.favorite_border_outlined,
-    size: 150,
+  GridView.builder(
+  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    childAspectRatio: 0.55,
+    crossAxisSpacing: 10,
+    mainAxisSpacing: 5
+    ),
+  itemCount: FavList.length,
+  itemBuilder: (BuildContext context, int  index) {
+    return FavCatalog(nameBook: FavList[index].name, bookCover: FavList[index].cover, bookAuthor: FavList[index].author, shortDesc: FavList[index].desc,);
+  }
   ),
 ];
 
@@ -76,7 +90,11 @@ static final List<Widget> _pages = <Widget>[
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('РитЛес'),
+        title: const Text('РитЛес', 
+        style: TextStyle(
+          color: Colors.white)
+          ),
+        backgroundColor: const Color.fromARGB(255, 49, 101, 107),
       ),
       body: Center(
       child: _pages.elementAt(_selectedIndex),
