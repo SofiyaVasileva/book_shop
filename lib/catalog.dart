@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vasilueva_bookshop/data.dart';
 import 'package:vasilueva_bookshop/favorite.dart';
+import 'package:vasilueva_bookshop/item_card.dart';
 
 
-const List<String> users = <String>["Фактор дисбаланса", "Демон из Пустоши. Колдун Российской империи", "Жизнь за жизнь", "Граф Аверин. Колдун Российской империи", "Политические режимы и трансформации: Россия в сравнительной перспективе"];
-const List<String> companies = <String>["Макс Глебов", "Виктор Дашкевич", "Елена Паленова", "Виктор Дашкевич", "Григорий Голосов"];
+const List<String> titlies = <String>["Фактор дисбаланса", "Демон из Пустоши. Колдун Российской империи", "Жизнь за жизнь", "Граф Аверин. Колдун Российской империи", "Политические режимы и трансформации: Россия в сравнительной перспективе"];
+const List<String> authors = <String>["Макс Глебов", "Виктор Дашкевич", "Елена Паленова", "Виктор Дашкевич", "Григорий Голосов"];
 
 
 class MainPage extends StatefulWidget{
@@ -14,20 +15,17 @@ class MainPage extends StatefulWidget{
   _MainPagerState createState() => _MainPagerState();
 }
 class _MainPagerState extends State<MainPage>{
-  
   void _onItemTapped(int index) {
   setState(() {
     _selectedIndex = index;
   });
   }
-  int value = 0;
   int _selectedIndex = 0;
- 
+
+
 static final List<Widget> _pages = <Widget>[
-    const Column( crossAxisAlignment: CrossAxisAlignment.center, children: [
-    SizedBox(width: 650,
-      height: 650,
-      child: Column(
+    const Column(children: [
+      Column(crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/147/147133.png')
         ),
@@ -35,17 +33,24 @@ static final List<Widget> _pages = <Widget>[
         ),
         Text('pochta@gmail.com', style: TextStyle(fontSize: 20)
         ),
-        Text('История покупок'
-        ),
       ],
     ),
-    ),
+    Column(crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('История покупок'),
+                Text("Tom", style: TextStyle(fontSize: 15)),
+                Text("Alice", style: TextStyle(fontSize: 15)),
+                Text("Bob", style: TextStyle(fontSize: 15)),
+                Text("Sam", style: TextStyle(fontSize: 15)),
+                Text("Kate", style: TextStyle(fontSize: 15)),
+              ],
+        ),
     ]),
 
   GridView.builder(
   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
-    childAspectRatio: 0.55,
+    childAspectRatio: 0.30,
     crossAxisSpacing: 10,
     mainAxisSpacing: 5
     ),
@@ -57,25 +62,16 @@ static final List<Widget> _pages = <Widget>[
 //Листвью, товары, +-, подстчет общей суммы стоимости
   ListView.builder(
    padding: const EdgeInsets.all(8),
-   itemCount: users.length,
+   itemCount: titlies.length,
    itemBuilder: (BuildContext context, int index) {
-      return Container(
-       padding: const EdgeInsets.symmetric(vertical: 10),
-       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-              Text(users[index], style: const TextStyle(fontSize: 22)),
-              Text("Автор: ${companies[index]}", style: const TextStyle(fontSize: 18))
-            ],
-          ),
-         );
+      return ShoppingCart(nameBook: bookList[index].name, bookAuthor: bookList[index].author);
        }
     ),
   
   GridView.builder(
   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
-    childAspectRatio: 0.55,
+    childAspectRatio: 0.30,
     crossAxisSpacing: 10,
     mainAxisSpacing: 5
     ),
